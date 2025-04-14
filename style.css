@@ -1,0 +1,757 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f8ff;
+    color: #333;
+    padding: 20px;
+  }
+  
+  header {
+    background: #007acc;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  nav a {
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  section {
+    margin-top: 40px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  #options {
+    margin-top: 30px;
+    background: #e6f7ff;
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  .option-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+  }
+  
+  .option-card {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #007acc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: 0.2s;
+  }
+  
+  .option-card:hover {
+    background-color: #007acc;
+    color: white;
+  }
+  
+  #calculator {
+    margin-top: 40px;
+    padding: 20px;
+    background: #f4f4f4; /* Light background for the calculator section */
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 300px; /* Ensure it takes up some space */
+    display: block;
+  }
+  
+  .calc-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  #calc-display {
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    text-align: right;
+    padding-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .calc-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  .calc-buttons button {
+    padding: 15px;
+    font-size: 18px;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .calc-buttons button:hover {
+    background: #005f99;
+  }
+  
+  .clear-btn {
+    grid-column: span 4;
+    background: #ff4444;
+  }
+  
+  /* Smooth scrolling effect */
+  html {
+    scroll-behavior: smooth;
+  }
+  #library ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  #library ul ul {
+    margin-left: 20px;
+  }
+  
+  #library li {
+    margin-bottom: 10px;
+  }
+  
+  #library a {
+    font-size: 18px;
+    color: #007acc;
+    text-decoration: none;
+  }
+  
+  #library a:hover {
+    color: #005f99;
+    text-decoration: underline;
+  }
+  #grammar textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  #grammar button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  #grammar button:hover {
+    background-color: #005f99;
+  }
+  #answer-helper textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  #answer-helper button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  #answer-helper button:hover {
+    background-color: #218838;
+  }
+  /* Modal Container */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top, centered horizontally */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  
+  /* Close Button (X) */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+  }
+  
+  /* Optional: Style Login Button */
+  .login-btn {
+    padding: 10px 20px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .login-btn:hover {
+    background-color: #005f99;
+  }
+  
+  /* Style the inputs in modal */
+  .modal-content input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  /* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.output {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+h2 {
+  color: #333;
+}
+
+#keyPoints, #summary {
+  font-size: 14px;
+  color: #555;
+}
+/* Container for the Sudoku game */
+.sudoku-container {
+  width: 500px;            /* Set a fixed width for the game area */
+  margin: 20px auto;       /* Centers the container and adds spacing above and below */
+  padding: 20px;           /* Provides inner spacing so elements are not flush against the edge */
+  background-color: #fff;  /* Background color for clarity */
+  border: 1px solid #ccc;  /* A subtle border to separate it from other content */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional drop shadow for effect */
+  overflow: auto;          /* Ensures that any content that exceeds the container does not spill over */
+  position: relative;      /* Establishes a positioning context for any child elements */
+}
+
+/* Ensure the Sudoku board (the table) fits inside the container */
+#sudoku-board {
+  width: 100%;             /* Uses full width of the container */
+  margin: 0 auto;          /* Centers the table inside the container */
+}
+
+/* Optional: If you have a message area or other controls, style them so they don't interfere */
+.sudoku-container .controls {
+  margin-top: 10px;
+}
+
+.sudoku-container p {
+  margin-top: 15px;
+}
+
+
+
+
+
+
+
+/* Basic reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* Main grid layout for the entire page */
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px; /* Main content and sidebar */
+  grid-template-rows: auto 1fr auto; /* Header, main, footer */
+  grid-template-areas:
+    "header header"
+    "nav main"
+    "footer footer";
+  gap: 20px;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  grid-area: header;
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  border: 1px solid #ddd;
+}
+
+/* Navigation */
+.nav {
+  grid-area: nav;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+.nav ul {
+  list-style: none;
+}
+.nav ul li {
+  margin-bottom: 10px;
+}
+.nav ul li a {
+  text-decoration: none;
+  color: #007BFF;
+}
+.nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Main content where Sudoku sits */
+.main {
+  grid-area: main;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Aside (Sidebar) */
+.aside {
+  grid-area: aside;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+
+/* Footer */
+.footer {
+  grid-area: footer;
+  background-color: #fff;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+/* Sudoku game container - ensures it stays within its grid cell */
+.sudoku-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Sudoku board styling */
+#sudoku-board {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+#sudoku-board td {
+  border: 1px solid #999;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+}
+#sudoku-board td input {
+  width: 38px;
+  height: 38px;
+  text-align: center;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #f9f9f9;
+}
+
+/* Thicker borders for 3x3 sub-grids */
+#sudoku-board td:nth-child(3n) {
+  border-right: 2px solid #333;
+}
+#sudoku-board tr:nth-child(3n) td {
+  border-bottom: 2px solid #333;
+}
+#sudoku-board td:first-child {
+  border-left: 2px solid #333;
+}
+#sudoku-board tr:first-child td {
+  border-top: 2px solid #333;
+}
+
+/* Controls */
+.controls {
+  margin-top: 10px;
+  text-align: center;
+}
+.controls button {
+  padding: 8px 12px;
+  margin: 0 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  background-color: #007BFF;
+  color: #fff;
+}
+.controls button:hover {
+  background-color: #0056b3;
+}
+#message {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+}
+
+
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+
+
+
+
+
+
+#study-scheduler {
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  margin: 20px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  max-width: 500px;
+}
+
+#studyForm label {
+  display: block;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.progress-container {
+  margin-top: 20px;
+}
+
+.progress-bar {
+  background-color: #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 25px;
+}
+
+#progress-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #28a745;
+  color: white;
+  text-align: center;
+  line-height: 25px;
+  transition: width 0.4s ease;
+}
+
+
+
+
+#calendar-scheduler {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+}
+
+#external-tasks {
+  width: 200px;
+  background: #f0f0f0;
+  padding: 15px;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.fc-task {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #6c5ce7;
+  color: white;
+  border-radius: 6px;
+  cursor: grab;
+  font-size: 14px;
+  text-align: center;
+}
+
+#calendar {
+  flex-grow: 1;
+  max-width: 800px;
+}
+
+
+
+
+
+
+:root {
+  --bg: white;
+  --text: black;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: all 0.4s ease;
+}
+
+.profile-card {
+  background: #e3e3e3;
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 300px;
+}
+
+.profile-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.profile-card input {
+  display: block;
+  margin: 10px 0;
+}
+
+#badges {
+  font-size: 24px;
+}
+
+/* Themes */
+.theme-dark {
+  --bg: #121212;
+  --text: #fff;
+}
+
+.theme-neon {
+  --bg: #0f0f1f;
+  --text: #39ff14;
+}
+
+.theme-retro {
+  --bg: #fdf6e3;
+  --text: #b58900;
+}
+
+
+
+
+
+
+
+
+#motivationBot {
+  background-color: #ffeaa7;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: 20px auto;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#quoteDisplay {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #2d3436;
+}
+
+#motivationBot button {
+  background: #6c5ce7;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+body.study-mode {
+  background: radial-gradient(circle at center, #dfe6e9, #2d3436);
+  backdrop-filter: blur(3px);
+  transition: all 0.5s ease;
+}
+
+#studyWithMe {
+  background-color: #dfe6e9;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 500px;
+  margin: 30px auto;
+  text-align: center;
+  transition: 0.4s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+#studyWithMe.glow {
+  box-shadow: 0 0 20px #74b9ff, 0 0 40px #81ecec;
+  background: #ecf0f1;
+}
+
+#timerDisplay {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 15px 0;
+  color: #2d3436;
+}
+
+button {
+  background: #0984e3;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 12px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+
+
+
+

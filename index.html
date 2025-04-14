@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student AI Website</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- FullCalendar CSS & JS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+</head>
+<body>
+  
+
+  <!-- Welcome Section (hidden by default) -->
+  <section id="welcome" style="display:none;">
+    <h2>Welcome, <span id="loggedUsername"></span>!</h2>
+    <button onclick="logout()">Logout</button>
+  </section>
+
+  <header>
+    <h1>Welcome to SmartStudent AI</h1>
+    <nav>
+      <a href="#grammar">Grammar Checker</a>
+      <a href="#library">Book Library</a>
+      <a href="#calculator">Calculator</a> <!-- Added link for calculator -->
+      
+    </nav>
+  </header>
+
+  <section id="theme-customizer">
+    <h2>🎨 Theme Customizer & Profile</h2>
+  
+    <div class="profile-card">
+      <img id="avatar" src="https://i.imgur.com/QhB1Z4t.png" alt="Avatar" />
+      <input type="file" id="uploadAvatar" accept="image/*">
+      <input type="text" id="bioInput" placeholder="Your short bio...">
+      <div id="badges">🏅 🎯 💡</div>
+    </div>
+  
+    <label>Choose Theme:</label>
+    <select id="themeSelector">
+      <option value="light">🌞 Light</option>
+      <option value="dark">🌙 Dark</option>
+      <option value="neon">🌈 Neon</option>
+      <option value="retro">📼 Retro</option>
+    </select>
+  </section>
+  
+
+
+
+
+
+  <!-- Login Button -->
+    <button class="login-btn" onclick="openLoginModal()">Login</button>
+  </header>
+
+  <!-- Modal for Login -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeLoginModal()">&times;</span>
+      <h2>Login</h2>
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <p id="loginError" style="color:red;"></p>
+    </div>
+  </div>
+
+  
+
+  <section id="options">
+
+
+    <h2>🎓 What do you want to do today?</h2>
+    <div class="option-grid">
+      <a href="#grammar" class="option-card">📝 Grammar Checker</a>
+      <a href="#library" class="option-card">📚 Book Library</a>
+      <a href="#calculator" class="option-card">🔢 Calculator</a> <!-- Added link for calculator -->
+      <a href="#" class="option-card">  🧩 Sudoku</a>
+      <a href="#" class="option-card">🧠 AI Answer Helper</a>
+      <a href="#" class="option-card">🧠  Smart Notes Generator</a>
+      <a href="#" class="option-card">📅 Study Scheduler & Habit Tracker</a>
+      <a href="#" class="option-card">📚 Study With Me</a>
+      <a href="#" class="option-card">💬 Your AI Motivator</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <h1>Smart Notes Generator</h1>
+    <textarea id="chapterText" placeholder="Paste your chapter text here..."></textarea><br>
+    <button onclick="generateNotes()">Generate Notes</button>
+    <div class="output" id="output">
+        <h2>Key Points & Summary:</h2>
+        <p id="keyPoints"></p>
+        <p id="summary"></p>
+    </div>
+</div>
+
+<div class="sudoku-container">
+  <h1>Sudoku Game</h1>
+  <table id="sudoku-board"></table>
+  <div class="controls">
+    <button onclick="checkSolution()">Check Solution</button>
+    <button onclick="initSudoku()">Reset Puzzle</button>
+  </div>
+  <p id="message"></p>
+</div>
+
+
+
+<section id="study-scheduler">
+  <h2>📅 Study Scheduler & Habit Tracker</h2>
+
+  <form id="studyForm">
+    <label>📚 Today's Goal: <input type="text" name="goal" required></label><br>
+    <label>📖 Homework Done: <input type="checkbox" name="homework"></label><br>
+    <label>💤 Slept 8 Hours: <input type="checkbox" name="sleep"></label><br>
+    <label>🧘 Took Breaks: <input type="checkbox" name="breaks"></label><br><br>
+
+    <button type="submit">Update Progress</button>
+  </form>
+
+  <div class="progress-container">
+    <label>📈 Progress:</label>
+    <div class="progress-bar">
+      <div id="progress-fill">0%</div>
+    </div>
+  </div>
+</section>
+
+
+<section id="calendar-scheduler">
+  <h2>📅 Drag & Drop Study Planner</h2>
+  
+  <div id="external-tasks">
+    <p><strong>Drag Tasks:</strong></p>
+    <div class="fc-task" data-title="📘 Study Maths">📘 Study Maths</div>
+    <div class="fc-task" data-title="🔬 Science Revision">🔬 Science Revision</div>
+    <div class="fc-task" data-title="📝 English Essay">📝 English Essay</div>
+    <div class="fc-task" data-title="🧠 Revise History">🧠 Revise History</div>
+  </div>
+
+  <div id="calendar"></div>
+</section>
+
+
+
+<section id="motivationBot">
+  <h2>💬 Your AI Motivator</h2>
+  <div id="quoteDisplay">Click the button to get inspired!</div>
+  <button onclick="speakMotivation()">🎤 Inspire Me!</button>
+</section>
+
+
+<section id="studyWithMe">
+  <h2>📚 Study With Me</h2>
+
+  <!-- Music -->
+  <audio id="studyMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/31/audio_1d34e2cc0c.mp3?filename=calm-lofi-ambient-115198.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <button onclick="toggleStudyMode()">🎵 Start Study Mode</button>
+
+  <!-- Timer -->
+  <div id="timerDisplay">25:00</div>
+  <button onclick="startTimer()">⏱️ Start Timer</button>
+</section>
+
+
+
+
+
+
+
+
+  <!-- Grammar Section -->
+  <section id="grammar">
+    <h2>📝 Grammar & Answer Helper</h2>
+    <textarea id="userText" placeholder="Type your sentence or answer here..."></textarea>
+    <button onclick="checkGrammar()">Check Grammar</button>
+    <p><strong>AI Suggestion:</strong></p>
+    <p id="correctedText">Your corrected text will appear here.</p>
+  </section>
+  <section id="answer-helper">
+    <h2>🤖 AI Answer Helper</h2>
+    <textarea id="questionInput" placeholder="Type your question here..."></textarea>
+    <button onclick="getAIAnswer()">Get Answer</button>
+    <p><strong>AI Answer:</strong></p>
+    <p id="aiAnswer">Your answer will appear here.</p>
+  </section>
+
+  <!-- Book Library Section -->
+  <section id="library">
+    <h2>📚 Book Library</h2>
+    <p>Here you can find textbooks for various subjects from Class 9 to 12 to help you study:</p>
+    <ul>
+      <!-- Class 9 Books -->
+      <li><strong>Class 9:</strong></li>
+      <ul>
+        <li><a href="https://ncert.nic.in/textbook/pdf/mate101.pdf" target="_blank">Mathematics Class 9</a></li>
+        <li><a href="https://ncert.nic.in/textbook/pdf/phy101.pdf" target="_blank">Physics Class 9</a></li>
+        <li><a href="https://ncert.nic.in/textbook/pdf/biol101.pdf" target="_blank">Biology Class 9</a></li>
+      </ul>
+
+      <!-- Class 10 Books -->
+      <li><strong>Class 10:</strong></li>
+      <ul>
+        <li><a href="https://ncert.nic.in/textbook/pdf/mate201.pdf" target="_blank">Mathematics Class 10</a></li>
+        <li><a href="https://ncert.nic.in/textbook/pdf/phy201.pdf" target="_blank">Physics Class 10</a></li>
+        <li><a href="https://ncert.nic.in/textbook/pdf/biol201.pdf" target="_blank">Biology Class 10</a></li>
+      </ul>
+
+      <!-- Class 11 Books -->
+      <li><strong>Class 11:</strong></li>
+      <ul>
+        <li><a href="https://ncert.nic.in/textbook/pdf/mate301.pdf" target="_blank">Mathematics Class 11</a></li>
+        <li><a href="https://ncert.nic.in/textbook/pdf/phy301.pdf" target="_blank">Physics Class 11</a></li>
+        <li><a href="https://ncert.nic.in/textbook/pdf/biol301.pdf" target="_blank">Biology Class 11</a></li>
+      </ul>
+
+      <!-- Class 12 Books -->
+      <li><strong>Class 12:</strong></li>
+      <ul>
+        <li><a href="https://ncert.nic.in/textbook/pdf/mate401.pdf" target="_blank">Mathematics Class 12</a></li>
+        <li><a href="https://ncert.nic.in/textbook/pdf/phy401.pdf" target="_blank">Physics Class 12</a></li>
+        <li><a href="https://ncert.nic.in/textbook/pdf/biol401.pdf" target="_blank">Biology Class 12</a></li>
+      </ul>
+    </ul>
+  </section>
+
+  <section id="calculator">
+    <h2>🔢 Smart Calculator</h2>
+    <div class="calc-container">
+      <input type="text" id="calc-display" readonly>
+
+      <div class="calc-buttons">
+        <button onclick="appendCalc('7')">7</button>
+        <button onclick="appendCalc('8')">8</button>
+        <button onclick="appendCalc('9')">9</button>
+        <button onclick="appendCalc('/')">÷</button>
+
+        <button onclick="appendCalc('4')">4</button>
+        <button onclick="appendCalc('5')">5</button>
+        <button onclick="appendCalc('6')">6</button>
+        <button onclick="appendCalc('*')">×</button>
+
+        <button onclick="appendCalc('1')">1</button>
+        <button onclick="appendCalc('2')">2</button>
+        <button onclick="appendCalc('3')">3</button>
+        <button onclick="appendCalc('-')">−</button>
+
+        <button onclick="appendCalc('0')">0</button>
+        <button onclick="appendCalc('.')">.</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="appendCalc('+')">+</button>
+
+        <button onclick="clearCalc()" class="clear-btn">C</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made by Ansh 🌟</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
